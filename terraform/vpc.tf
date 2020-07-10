@@ -1,5 +1,5 @@
 resource "aws_vpc" "eksvpc" {
-  cidr_block = "10.0.0.0/16"
+  cidr_block = "192.168.0.0/16"
 
   tags = map(
     "Name", "terraform-eksvpc-node",
@@ -10,7 +10,7 @@ resource "aws_vpc" "eksvpc" {
 resource "aws_subnet" "ekssubnet" {
   count = 2
 
-  cidr_block              = "10.0.${count.index}.0/24"
+  cidr_block              = "192.168.${count.index}.0/24"
   map_public_ip_on_launch = true
   vpc_id                  = aws_vpc.eksvpc.id
 
