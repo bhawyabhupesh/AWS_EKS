@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+ 
+metadata:
+    labels:
+        app: mywebdeploy
+spec:
+    containers:
+    - image: httpd
+      name: mywebapp
+    volumeMounts:
+    - name: mywebapp-persistent-storage
+      mountPath: /var/www/html
+    volumes:
+    - name: mywebapp-persistent-storage
+      persistentVolumeClaim:
+          claimName: mypv-claim
